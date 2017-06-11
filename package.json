@@ -1,0 +1,28 @@
+{
+  "name": "caltemose-css",
+  "version": "1.0.0",
+  "description": "Minimal CSS boilerplate",
+  "main": "index.js",
+  "scripts": {
+    "build": "./node_modules/.bin/gulp build"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/caltemose/css.git"
+  },
+  "keywords": [
+    "css"
+  ],
+  "author": "Chad L. Altemose",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/caltemose/css/issues"
+  },
+  "homepage": "https://github.com/caltemose/css#readme",
+  "devDependencies": {
+    "del": "^3.0.0",
+    "gulp": "github:gulpjs/gulp#4.0",
+    "gulp-pug": "^3.3.0",
+    "gulp-sass": "^3.1.0"
+  }
+}
