@@ -4,6 +4,7 @@ const pug = require('gulp-pug')
 const sass = require('gulp-sass')
 const autoprefixer = require('gulp-autoprefixer')
 const browsersync = require('browser-sync').create()
+const sasslint = require('gulp-sass-lint')
 
 /* Supporting tasks
 ---------------------------------------------------------------- */
@@ -42,6 +43,7 @@ gulp.task('reload', (done) => {
     done()
 })
 
+
 /* Watch tasks
 ---------------------------------------------------------------- */
 
@@ -54,6 +56,19 @@ gulp.task('watch:styles', () => {
 })
 
 gulp.task('watch', gulp.parallel('watch:html', 'watch:styles'))
+
+/* Lint tasks
+---------------------------------------------------------------- */
+
+gulp.task('lint:sass', () => {
+    const opts = {
+        configFile: './sass-lint.yml'
+    }
+    return gulp.src('src/styles/**/*.s+(a|c)ss')
+        .pipe(sasslint(opts))
+        .pipe(sasslint.format())
+        .pipe(sasslint.failOnError())
+})
 
 
 /* Primary tasks
