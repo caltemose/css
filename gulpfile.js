@@ -5,6 +5,9 @@ const sass = require('gulp-sass')
 const autoprefixer = require('gulp-autoprefixer')
 const browsersync = require('browser-sync').create()
 const sasslint = require('gulp-sass-lint')
+const cleancss = require('gulp-clean-css')
+const rename = require('gulp-rename')
+
 
 /* Supporting tasks
 ---------------------------------------------------------------- */
@@ -21,6 +24,14 @@ gulp.task('html', () => {
 
 gulp.task('css', () => {
     return gulp.src('src/styles/main.sass')
+        .pipe(sass().on('error', sass.logError))
+        .pipe(autoprefixer())
+        .pipe(gulp.dest('dist/styles'))
+        .pipe(browsersync.stream())
+})
+
+gulp.task('css:theme', () => {
+    return gulp.src('src/styles/theme/theme.sass')
         .pipe(sass().on('error', sass.logError))
         .pipe(autoprefixer())
         .pipe(gulp.dest('dist/styles'))
@@ -52,10 +63,26 @@ gulp.task('watch:html', () => {
 })
 
 gulp.task('watch:styles', () => {
-    gulp.watch('src/styles/**/*', gulp.series('css'))
+    gulp.watch('src/styles/*', gulp.series('css'))
 })
 
-gulp.task('watch', gulp.parallel('watch:html', 'watch:styles'))
+gulp.task('watch:styles:theme', () => {
+    gulp.watch('src/styles/theme/**/*', gulp.series('css:theme'))
+})
+
+gulp.task('watch', gulp.parallel('watch:html', 'watch:styles', 'watch:styles:theme'))
+
+
+/* Minify/production tasks
+---------------------------------------------------------------- */
+
+gulp.task('minify:css', () => {
+    return gulp.src('dist/styles/main.css')
+        .pipe(cleancss())
+        .pipe(rename('main.min.css'))
+        .pipe(gulp.dest('./'))
+})
+
 
 /* Lint tasks
 ---------------------------------------------------------------- */
@@ -74,6 +101,8 @@ gulp.task('lint:sass', () => {
 /* Primary tasks
 ---------------------------------------------------------------- */
 
-gulp.task('build', gulp.series('clean', gulp.parallel('html', 'css')))
+gulp.task('build', gulp.series('clean', gulp.parallel('html', 'css', 'css:theme')))
 
 gulp.task('default', gulp.series('build', gulp.parallel('serve', 'watch')))
+
+gulp.task('minify', gulp.series('css', 'minify:css'))

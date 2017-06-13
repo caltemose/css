@@ -1,13 +1,13 @@
 extends _layout.pug
 
 block content
-    article
+    article.Styleguide
         h1 All Styles
 
         p This page shows the default styles for all primary tags.
 
         section
-            h2 Headers
+            h2.Divider Headers
 
             h1 This is h1
             h2 This is h2
@@ -17,13 +17,13 @@ block content
             h6 This is h6
 
         section
-            h2 Type Basics
+            h2.Divider Type Basics
 
-            p This is a paragraph.  Lorem ipsum dolor sit amet, consectetur adipisicing elit. Porro saepe, ad deserunt, ut debitis nulla eveniet cum impedit placeat. Nemo.
+            p This is a paragraph.  Lorem ipsum dolor sit amet, consectetur adipisicing elit. Porro saepe, ad deserunt, ut debitis nulla eveniet cum impedit placeat. Nemo. #[a(href='#') This is an anchor].  Lorem ipsum dolor sit amet, consectetur adipisicing elit. Magni facere, nostrum ratione modi aliquid, autem! Dolorum tenetur beatae praesentium nemo tempora neque omnis aliquid corrupti error ipsam, quaerat illum quo, impedit vero commodi vitae suscipit asperiores eveniet delectus esse? Ducimus sed quibusdam maxime.
 
-            a(href='#') This is an anchor
+            blockquote This is a blockquote.
 
-            blockquote This is a blockquote. Beneath it is an hr.
+            p  Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nihil saepe, hic sequi eius quae, numquam, nostrum, obcaecati quam sapiente modi qui! Iste.
 
             hr
 
@@ -36,7 +36,7 @@ block content
                 em And this text is emphasized.
 
         section
-            h2 Lists
+            h2.Divider Lists
 
             h3 Unordered List
 
@@ -60,16 +60,22 @@ block content
                 
                 dt JS
                 dd Javascript.  Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sed minus atque voluptas, enim aut quis consectetur distinctio blanditiis sit omnis sequi, ea animi praesentium aliquid placeat! Exercitationem atque iure perferendis blanditiis, quaerat veritatis alias.
-            
+
+        
         section
-            h2 Forms
+            h2.Divider Buttons
+
+            button Push Me
+
+        section
+            h2.Divider Forms
 
             form
                 fieldset
                     label
                         | A text input
                         |
-                        input(type="text")
+                        input(type="text" placeholder="Type something")
                 
                 fieldset
                     label
@@ -82,7 +88,7 @@ block content
 
 
         section
-            h2 Tables
+            h2.Divider Tables
 
             table
                 thead
